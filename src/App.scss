@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+}
+
+.full-height-container{
+  min-height: calc(100vh - 127px);
 }
 
 .App-logo {
