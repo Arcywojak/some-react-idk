@@ -1,15 +1,17 @@
 import './App.scss';
 import HeaderComponent from './constant-components/header/header.component';
 import FooterComponent from './constant-components/footer/footer.component';
-import Container from '@material-ui/core/Container';
-
+import ContentWrapperComponent from './constant-components/content-wrapper/content-wrapper.component';
 function App() {
+
   return (
     <div className="App">
       <HeaderComponent/>
-        <Container className="full-height-container">
 
-        </Container>
+      <ContentWrapperComponent>
+
+      </ContentWrapperComponent>
+      
       <FooterComponent/>
     </div>
   );
