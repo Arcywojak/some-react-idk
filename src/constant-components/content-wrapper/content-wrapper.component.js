@@ -12,12 +12,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const ContentWrapperComponent = () => {
+const ContentWrapperComponent = ({children}) => {
     const classes = useStyles();
 
     return (
         <Container className={classes.fullHeightContainer}>
-
+            {children}
        </Container>
     )
 }
