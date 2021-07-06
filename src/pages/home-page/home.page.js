@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 const HomePage = () => {
 
     const [inputValue, setInputValue] = useState('');
-    const [weatherArray, setWeatherArray] = useState([]);
+    const [weatherArray, setWeatherArray] = useState([1,2,3]);
 
     const weatherService = new WeatherService();
 
@@ -29,7 +29,7 @@ const HomePage = () => {
 
         <SearchInput inputValue={inputValue} setInputValue={setInputValue} placeholder="e.g. Warsaw" />
 
-        <Button variant="contained" color="primary">
+        <Button disabled={inputValue.length === 0} variant="contained" color="primary" onClick={getWeather}>
           Search
         </Button>
 
