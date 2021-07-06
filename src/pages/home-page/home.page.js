@@ -1,25 +1,23 @@
 import React, {useState} from 'react'
 import SearchInput from '../../components/home-page-components/search-input';
 import Typography from '@material-ui/core/Typography';
-import WeatherBlockList from '../../components/home-page-components/weather-block-list';
+import WeatherBlock from '../../components/home-page-components/weather-block';
 import WeatherService from '../../services/weather.service/weather.service';
 import Button from '@material-ui/core/Button';
 const HomePage = () => {
 
     const [inputValue, setInputValue] = useState('');
-    const [weatherArray, setWeatherArray] = useState([1,2,3]);
+    const [weather, setWeather] = useState(null);
 
     const weatherService = new WeatherService();
 
     const getWeather = () => {
       weatherService.getWeatherByCityName(inputValue).then(res => {
-        if (res instanceof Array) {
-          setWeatherArray(res);
-        } else {
-          setWeatherArray([res]);
-        }
+        setWeather(res.data);
       })
     }
+
+    const weatherBlock = true ? <WeatherBlock weather = {weather} /> : null;
 
     return (
         <>
@@ -33,7 +31,7 @@ const HomePage = () => {
           Search
         </Button>
 
-        <WeatherBlockList weatherArray={weatherArray} />
+        {weatherBlock}
           
         </>
     )
