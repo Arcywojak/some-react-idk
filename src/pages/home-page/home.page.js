@@ -25,7 +25,6 @@ const HomePage = () => {
         <Typography variant="h3">
              Check, what the weather is like
         </Typography>
-
         <SearchInput inputValue={inputValue} setInputValue={setInputValue} placeholder="e.g. Warsaw" />
 
         <Button disabled={inputValue.length === 0} variant="contained" color="primary" onClick={getWeather}>

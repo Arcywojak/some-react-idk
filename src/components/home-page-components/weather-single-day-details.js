@@ -5,50 +5,29 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import InnerAcordionWithWeather from './inner-acriodion-with-weather';
+import InnerAccordionWithWeather from './inner-accordion-with-weather';
 
 const WeatherSingleDayDetails = ({value, index, data}) => {
-    return ( <div hidden={value !== index}>WEATHER{data?.length    /*
+
+
+    
+    return ( 
         <div hidden={value !== index}>
-            <Accordion expanded={true}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    >
-                    <Typography >Accordion 1</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <InnerAcordionWithWeather />
-                </AccordionDetails>
-            </Accordion>
+            {data && data.map((certainHourWeather, index) => {
+                const {dt_txt} = certainHourWeather;
 
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    >
-                    <Typography >Accordion 1</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <InnerAcordionWithWeather />
-                </AccordionDetails>
-            </Accordion>
-
-            <Accordion>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                    >
-                    <Typography >Accordion 1</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <InnerAcordionWithWeather />
-                </AccordionDetails>
-            </Accordion>
-        </div>*/}</div>
+                return (
+                <Accordion key={index} defaultExpanded = {index === 0}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography >{dt_txt?.substring(dt_txt?.length - 9, dt_txt?.length)}</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <InnerAccordionWithWeather data={certainHourWeather}/>
+                    </AccordionDetails>
+                </Accordion>
+                )
+            })}
+        </div>
     )
 }
 

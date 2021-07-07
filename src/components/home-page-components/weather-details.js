@@ -23,14 +23,14 @@ const WeatherDetails = ({weatherDetails}) => {
                 return acc;
             }, {})
         )
-    } ,weatherDetails)
+    } , [weatherDetails])
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
     }
 
-    const tabsToRender = Object.keys(groupedWeatherByDates).map(keyName => {
-        return <Tab key={keyName} label={keyName}/>
+    const tabsToRender = Object.keys(groupedWeatherByDates).map((keyName, index) => {
+        return <Tab key={keyName} label={index === 0 ? "Today" : keyName}/>
     })
 
     const singleDaysToRender = Object.keys(groupedWeatherByDates).map((keyName, index) => {
@@ -40,7 +40,7 @@ const WeatherDetails = ({weatherDetails}) => {
     return (
         <>
         <AppBar position="static">
-            <Tabs value={value} onChange={handleChange}>
+            <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto">
                 {tabsToRender}
             </Tabs>
         </AppBar>
