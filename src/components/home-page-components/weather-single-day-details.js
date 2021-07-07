@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import InnerAcordionWithWeather from './inner-acriodion-with-weather';
 
 const WeatherSingleDayDetails = ({value, index, data}) => {
-    return (
+    return ( <div hidden={value !== index}>WEATHER{data?.length    /*
         <div hidden={value !== index}>
             <Accordion expanded={true}>
                 <AccordionSummary
@@ -48,7 +48,7 @@ const WeatherSingleDayDetails = ({value, index, data}) => {
                     <InnerAcordionWithWeather />
                 </AccordionDetails>
             </Accordion>
-        </div>
+        </div>*/}</div>
     )
 }
 

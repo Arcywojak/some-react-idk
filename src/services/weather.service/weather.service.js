@@ -8,7 +8,7 @@ class WeatherService {
     }
 
     getWeatherByCityName(cityName) {
-        const url = `${this.base_url}q=${cityName}&appid=${API_KEY}`
+        const url = `${this.base_url}q=${cityName}&units=metric&appid=${API_KEY}`
         return axios.get(url)
     }
 

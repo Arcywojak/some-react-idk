@@ -6,7 +6,6 @@ import temperature from '../../images/temperature.png';
 import waterDrop from '../../images/waterDrop.svg';
 import wind from '../../images/wind.svg';
 import pressure from '../../images/pressure.png';
-import description from '../../images/description.jpg';
 
 const useStyles = makeStyles({
     gridBlock: {

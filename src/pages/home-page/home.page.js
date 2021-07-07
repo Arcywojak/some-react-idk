@@ -14,10 +14,11 @@ const HomePage = () => {
     const getWeather = () => {
       weatherService.getWeatherByCityName(inputValue).then(res => {
         setWeather(res.data);
+        console.log(res.data)
       })
     }
 
-    const weatherBlock = true ? <WeatherBlock weather = {weather} /> : null;
+    const weatherBlock = weather != null ? <WeatherBlock weather = {weather} /> : null;
 
     return (
         <>

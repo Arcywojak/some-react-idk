@@ -1,33 +1,51 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import WeatherSingleDayDetails from './weather-single-day-details';
 
-const WeatherDetails = () => {
+const WeatherDetails = ({weatherDetails}) => {
 
     const [value, setValue] = useState(0);
+    const [groupedWeatherByDates, setGroupedWeatherByDates] = useState({})
+
+    useEffect(() => {
+        setGroupedWeatherByDates(
+            weatherDetails.reduce((acc, curr) => {
+                //we take date substring of dt_txt which is date and time
+                //the goal is to group weatherDetails by dates occuring in weatherDetails
+                const date = curr?.dt_txt?.substring(0, 10)
+                if ( !(date in acc) ) {
+                    acc[ date ] = [];
+                }
+                acc[ date ].push(curr);
+                return acc;
+            }, {})
+        )
+    } ,weatherDetails)
 
     const handleChange = (event, newValue) => {
         setValue(newValue)
     }
 
+    const tabsToRender = Object.keys(groupedWeatherByDates).map(keyName => {
+        return <Tab key={keyName} label={keyName}/>
+    })
+
+    const singleDaysToRender = Object.keys(groupedWeatherByDates).map((keyName, index) => {
+        return <WeatherSingleDayDetails key={keyName} value={value} index={index} data={groupedWeatherByDates[keyName]}/>
+    })
+
     return (
         <>
         <AppBar position="static">
             <Tabs value={value} onChange={handleChange}>
-                <Tab label="Item One"  />
-                <Tab label="Item Two"  />
-                <Tab label="Item Three"  />
+                {tabsToRender}
             </Tabs>
         </AppBar>
 
-        <WeatherSingleDayDetails value={value} index={0} />
-
-        <WeatherSingleDayDetails value={value} index={1} />
-
-        <WeatherSingleDayDetails value={value} index={2} />
+        {singleDaysToRender}
       </>
     )
 }

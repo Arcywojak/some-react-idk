@@ -7,13 +7,17 @@ const useStyles = makeStyles({
       display: "flex",
       flexDirection: "row",
       justifyContent: "flex-start",
-      alignItems: "center"
+      alignItems: "center",
+      marginBottom: "6px"
     },
     child: {
-        
+    display:"flex",
+    alignItems:"center"
     },
     imageStyles: {
-        width: "40px",
+        width:"100%",
+        maxWidth: "35px",
+        maxHeight:"40px",
         paddingRight: "10px"
     }
   });
@@ -27,7 +31,7 @@ const ImageWithText = ({imageSrc, text}) => {
                 <img src={imageSrc} className={classes.imageStyles}/>
             </div>
             <div className={classes.child}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="subtitle1" gutterBottom>
                 {text}
             </Typography>
             </div>
