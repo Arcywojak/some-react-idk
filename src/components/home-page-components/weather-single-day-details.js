@@ -9,8 +9,6 @@ import InnerAccordionWithWeather from './inner-accordion-with-weather';
 
 const WeatherSingleDayDetails = ({value, index, data}) => {
 
-
-    
     return ( 
         <div hidden={value !== index}>
             {data && data.map((certainHourWeather, index) => {
