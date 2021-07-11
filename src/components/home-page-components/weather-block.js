@@ -12,11 +12,14 @@ const useStyles = makeStyles({
     weatherBlock: {
         width: "100%",
         maxWidth: "800px",
-        textAlign: "left"
+        textAlign: "left",
     },
     headingMargin: {
-        margin: "1em 0 .3em",
+        margin: "1em 0",
         textAlign: "left"
+    },
+    titleAndImagesWrapper: {
+        padding:"0 16px "
     }
   });
 
@@ -28,12 +31,14 @@ const WeatherBlock = ({weather}) => {
 
     return (
         <div className={classes.weatherBlock}>
-            <Typography variant="h2" component="h2" className={classes.headingMargin}>
-                {`${name}, ${country}`}
-            </Typography>
-            <div >
-                <ImageWithText imageSrc={sunriseImageSrc} text={`Sunrise: ${secondsToTimeString(sunrise)}`} />
-                <ImageWithText imageSrc={sunsetImageSrc} text={`Sunset: ${secondsToTimeString(sunset)}`} />
+            <div className={classes.titleAndImagesWrapper}>
+                <Typography variant="h2" component="h2" className={classes.headingMargin}>
+                    {`${name}, ${country}`}
+                </Typography>
+                <div >
+                    <ImageWithText imageSrc={sunriseImageSrc} text={`Sunrise: ${secondsToTimeString(sunrise)}`} />
+                    <ImageWithText imageSrc={sunsetImageSrc} text={`Sunset: ${secondsToTimeString(sunset)}`} />
+                </div>
             </div>
 
             <WeatherDetails weatherDetails={list}/>

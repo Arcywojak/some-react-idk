@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       alignItems: "Center",
       flexDirection: "column",
-      padding: "1.5rem"
+      padding: "1.5rem 0 4rem"
     },
 }));
 

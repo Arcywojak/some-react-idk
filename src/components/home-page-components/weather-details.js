@@ -5,7 +5,17 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import WeatherSingleDayDetails from './weather-single-day-details';
 
+const useStyles = makeStyles({
+    tabsWrapper: {
+        width: "100%",
+        textAlign: "left",
+        overflow: "auto"
+    }
+  });
+
 const WeatherDetails = ({weatherDetails}) => {
+
+    const classes = useStyles();
 
     const [value, setValue] = useState(0);
     const [groupedWeatherByDates, setGroupedWeatherByDates] = useState({})
@@ -39,12 +49,13 @@ const WeatherDetails = ({weatherDetails}) => {
 
     return (
         <>
+        <div className={classes.tabsWrapper}>
         <AppBar position="static">
-            <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto">
+            <Tabs className={classes.tabsStyles} value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto">
                 {tabsToRender}
             </Tabs>
         </AppBar>
-
+        </div>
         {singleDaysToRender}
       </>
     )

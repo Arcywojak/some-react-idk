@@ -6,6 +6,7 @@ import temperatureImageSrc from '../../images/temperature.png';
 import waterDropImageSrc from '../../images/waterDrop.svg';
 import windImageSrc from '../../images/wind.svg';
 import pressureImageSrc from '../../images/pressure.png';
+import descriptionImageSrc from '../../images/description.jpg';
 import { ICON_BASE_URL_PREFIX, ICON_BASE_URL_POSTFIX } from '../../constants/icons-base-url';
 
 const useStyles = makeStyles({
@@ -13,7 +14,13 @@ const useStyles = makeStyles({
         width: "100%",
         display: "grid",
         gridTemplateColumns:"1fr 2fr",
-        alignItems: "center"
+        alignItems: "center",
+        "@media (max-width:800px)": {
+        gridTemplateColumns:"1fr 1fr"
+        },
+        "@media (max-width:600px)": {
+            gridTemplateColumns:"100%"
+            }
     },
     weatherIconWithDescription: {
         textAlign: "center",
@@ -23,7 +30,22 @@ const useStyles = makeStyles({
             height: "50vw",
             maxWidth:"150px",
             maxHeight: "150px",
-            marginTop: "12px"
+            marginTop: "12px",
+            "@media (max-width:800px)": {
+                maxWidth:"100px",
+                maxHeight: "100px",
+                }
+        }
+    },
+    hideOnSmaller: {
+        "@media (max-width:600px)": {
+            display: "none"
+        }
+    },
+    showOnSmaller: {
+        display:"none",
+        "@media (max-width:600px)": {
+            display: "block"
         }
     }
   });
@@ -39,13 +61,16 @@ const InnerAccordionWithWeather = ({data}) => {
     return (
         <div className={classes.gridBlock}>
              <div className={classes.imageWithTextList}>
+                <div className={classes.showOnSmaller}>
+                    <ImageWithText imageSrc={descriptionImageSrc} text={description} />
+                </div>
                 <ImageWithText imageSrc={temperatureImageSrc} text={`${temp}°C, feels like ${feels_like}°C`} />
                 <ImageWithText imageSrc={waterDropImageSrc} text={`${humidity}%`} />
                 <ImageWithText imageSrc={windImageSrc} text={`${speed} m/s`} />
                 <ImageWithText imageSrc={pressureImageSrc} text={`${pressure} hPa`} />
              </div>
-             <div className={classes.weatherIconWithDescription}>
-                <Typography variant="h6" component="h4" className={classes.headingMargin}>
+             <div className={`${classes.weatherIconWithDescription} ${classes.hideOnSmaller}`}>
+                <Typography variant="h6" component="h4">
                     {description}
                 </Typography>
                 <img src={`${ICON_BASE_URL_PREFIX}${icon}${ICON_BASE_URL_POSTFIX}`} />

@@ -2,6 +2,11 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+    animationWrapper: {
+        width:"100%",
+       display:"flex",
+       justifyContent:"center"
+    },
     "@keyframes hidingAnimation": {
       "0%": {
         opacity: 1
@@ -27,14 +32,14 @@ const useStyles = makeStyles(theme => ({
             opacity: 0
         },
         "50%": {
-            maxHeight: "3000px",
+            maxHeight: "1500px",
             opacity: 0,
             transform: "translate(-100px, -100px)"
         },
         "100%": {
             opacity : 1,
             transform: "translate(0, 0)",
-            maxHeight: "3000px"
+            maxHeight: "1500px"
         }
     },
     showingAnimation: {
@@ -50,10 +55,10 @@ const useStyles = makeStyles(theme => ({
 const TriggerAnimation = ({children, animationType}) => {
     const classes = useStyles();
     return (
-        <div className={animationType ? classes[animationType] : ""}>
+        <div className={`${animationType ? classes[animationType] : ""} ${classes.animationWrapper}`}>
             {children}
         </div>
     )
 }
 
-export default TriggerAnimation
+export default TriggerAnimation;

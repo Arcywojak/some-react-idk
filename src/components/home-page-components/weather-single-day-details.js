@@ -29,4 +29,4 @@ const WeatherSingleDayDetails = ({value, index, data}) => {
     )
 }
 
-export default WeatherSingleDayDetails
+export default WeatherSingleDayDetails;
