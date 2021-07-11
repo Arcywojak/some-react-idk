@@ -8,7 +8,7 @@ const useStyles = makeStyles({
       flexDirection: "row",
       justifyContent: "flex-start",
       alignItems: "center",
-      marginBottom: "6px"
+      margin: "6px 0"
     },
     child: {
     display:"flex",
@@ -19,14 +19,17 @@ const useStyles = makeStyles({
         maxWidth: "35px",
         maxHeight:"40px",
         paddingRight: "10px"
+    },
+    reversed: {
+        flexDirection: "row-reverse"
     }
   });
 
-const ImageWithText = ({imageSrc, text}) => {
+const ImageWithText = ({imageSrc, text, reverseDirection}) => {
     const classes = useStyles();
 
     return (
-        <div className={classes.imageWithText}>
+        <div className={`${classes.imageWithText} ${reverseDirection ? classes. reversed : ""}`}>
             <div className={classes.child}>
                 <img src={imageSrc} className={classes.imageStyles}/>
             </div>

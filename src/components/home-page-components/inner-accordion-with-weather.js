@@ -37,6 +37,9 @@ const useStyles = makeStyles({
                 }
         }
     },
+    imageWithTextWrapper: {
+        margin: "12px 0"
+    },
     hideOnSmaller: {
         "@media (max-width:600px)": {
             display: "none"
@@ -45,7 +48,8 @@ const useStyles = makeStyles({
     showOnSmaller: {
         display:"none",
         "@media (max-width:600px)": {
-            display: "block"
+            display: "block",
+            margin: "6px 0"
         }
     }
   });
@@ -64,10 +68,18 @@ const InnerAccordionWithWeather = ({data}) => {
                 <div className={classes.showOnSmaller}>
                     <ImageWithText imageSrc={descriptionImageSrc} text={description} />
                 </div>
-                <ImageWithText imageSrc={temperatureImageSrc} text={`${temp}°C, feels like ${feels_like}°C`} />
-                <ImageWithText imageSrc={waterDropImageSrc} text={`${humidity}%`} />
-                <ImageWithText imageSrc={windImageSrc} text={`${speed} m/s`} />
-                <ImageWithText imageSrc={pressureImageSrc} text={`${pressure} hPa`} />
+                <div className={classes.imageWithTextWrapper}>
+                    <ImageWithText imageSrc={temperatureImageSrc} text={`${temp}°C, feels like ${feels_like}°C`} />
+                </div>
+                <div className={classes.imageWithTextWrapper}>
+                    <ImageWithText imageSrc={waterDropImageSrc} text={`${humidity}%`} />
+                </div>
+                <div className={classes.imageWithTextWrapper}>
+                    <ImageWithText imageSrc={windImageSrc} text={`${speed} m/s`} />
+                </div>
+                <div className={classes.imageWithTextWrapper}>
+                    <ImageWithText imageSrc={pressureImageSrc} text={`${pressure} hPa`} />
+                </div>
              </div>
              <div className={`${classes.weatherIconWithDescription} ${classes.hideOnSmaller}`}>
                 <Typography variant="h6" component="h4">
