@@ -9,7 +9,10 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
       alignItems: "Center",
       flexDirection: "column",
-      padding: "1.5rem 0 4rem"
+      padding: "1.5rem 0 4rem",
+      "@media (max-width: 600px)": {
+          minHeight: "calc(100vh - 108px)"
+      }
     },
 }));
 

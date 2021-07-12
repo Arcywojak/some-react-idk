@@ -14,8 +14,7 @@ const useStyles = makeStyles({
         maxWidth: "800px",
         textAlign: "left",
     },
-    headingMargin: {
-        margin: "1em 0",
+    headingStyles: {
         textAlign: "left"
     },
     titleAndImagesWrapper: {
@@ -32,7 +31,7 @@ const WeatherBlock = ({weather}) => {
     return (
         <div className={classes.weatherBlock}>
             <div className={classes.titleAndImagesWrapper}>
-                <Typography variant="h2" component="h2" className={classes.headingMargin}>
+                <Typography variant="h2" component="h2" className={classes.headingStyles}>
                     {`${name}, ${country}`}
                 </Typography>
                 <div >

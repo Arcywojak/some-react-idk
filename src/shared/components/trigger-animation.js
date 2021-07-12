@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
         "50%": {
             maxHeight: "1500px",
             opacity: 0,
-            transform: "translate(-100px, -100px)"
+            transform: "translate(-80px, 80px)"
         },
         "100%": {
             opacity : 1,

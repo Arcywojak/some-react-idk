@@ -34,7 +34,7 @@ const ImageWithText = ({imageSrc, text, reverseDirection}) => {
                 <img src={imageSrc} className={classes.imageStyles}/>
             </div>
             <div className={classes.child}>
-            <Typography variant="subtitle1" gutterBottom>
+            <Typography variant="subtitle1" >
                 {text}
             </Typography>
             </div>
