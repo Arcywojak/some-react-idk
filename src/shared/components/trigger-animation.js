@@ -1,11 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
+import { BASIC_ANIMATION_DELAY, BASIC_ANIMATION_DURATION } from '../../constants/animations';
 
 const useStyles = makeStyles(theme => ({
     animationWrapper: {
         width:"100%",
        display:"flex",
-       justifyContent:"center"
+       justifyContent:"center",
+       animationFillMode: "forwards"
     },
     "@keyframes hidingAnimation": {
       "0%": {
@@ -14,17 +16,15 @@ const useStyles = makeStyles(theme => ({
       "50%": {
         opacity: 0,
         maxHeight: "2000px"
-       // transform: "scale(1)"
       },
       "100%": {
-       // transform: "scale(0)",
         maxHeight: "0",
         opacity: 0
       }
     },
     hidingAnimation: {
-        animation: `$hidingAnimation 2000ms  ${theme.transitions.easing.easeInOut} `,
-        animationFillMode: "forwards"
+        animationName: "$hidingAnimation",
+        animationTimingFunction: `${theme.transitions.easing.easeInOut}`
     },
     "@keyframes showingAnimation": {
         "0%": {
@@ -45,17 +45,25 @@ const useStyles = makeStyles(theme => ({
     showingAnimation: {
         maxHeight: 0,
         opacity: 0,
-        animation: `$showingAnimation 2000ms  ${theme.transitions.easing.easeInOut} `,
-        animationFillMode: "forwards"
+        overflow: "hidden",
+        animationName: "$showingAnimation",
+        animationTimingFunction: `${theme.transitions.easing.easeInOut}`
     }
 
   }));
 
 
-const TriggerAnimation = ({children, animationType}) => {
+const TriggerAnimation = ({children, animationType, animationDuration, animationDelay}) => {
     const classes = useStyles();
+    const stylesFromProps = {
+        animationDelay: `${animationDelay || BASIC_ANIMATION_DELAY}ms`,
+        animationDuration: `${animationDuration || BASIC_ANIMATION_DURATION}ms`
+    }
     return (
-        <div className={`${animationType ? classes[animationType] : ""} ${classes.animationWrapper}`}>
+        <div 
+        className={`${animationType ? classes[animationType] : ""} ${classes.animationWrapper}`}
+        style = {stylesFromProps}
+        >
             {children}
         </div>
     )

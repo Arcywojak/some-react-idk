@@ -29,36 +29,37 @@ const HomePage = () => {
 
     const getWeather = () => {
       setIsLoading(true);
-
       weatherService.getWeatherByCityName(inputValue).then(res => {
         if(!weather) {
 
-          setTimeout(() => {
-            setWeather(res.data);
-            setAnimationTypeForWeatherBlock(SHOW_ANIMATION);
-          }, 2500)
+          setWeather(res.data);
+          setAnimationTypeForTitle(HIDING_ANIMATION);
+          setAnimationTypeForWeatherBlock(SHOW_ANIMATION);
 
           setTimeout(() => {
-            setAnimationTypeForTitle(HIDING_ANIMATION);
+            //we want loader not to disappear immediately
             setIsLoading(false);
-          }, 1500)
+          }, 1000)
         } else {
           setTimeout(() => {
             setIsLoading(false);
             setWeather(res.data);
-          }, 1500)
+          }, 1000)
         }
         
       })
     }
 
-    const weatherBlock = weather != null ? <WeatherBlock hidden={true} weather = {weather} /> : null;
+    const weatherBlock = (weather != null && animationTypeForWeatherBlock === SHOW_ANIMATION) ? (
+    <TriggerAnimation animationType={animationTypeForWeatherBlock} animationDelay={2000}>
+      <WeatherBlock hidden={true} weather = {weather} />
+    </TriggerAnimation>) : null;
 
     const loader = isLoading ?  <div className={classes.loaderWrapper}><CircularProgress /></div> : null;
 
     return (
         <>
-        <TriggerAnimation animationType={animationTypeForTitle}>
+        <TriggerAnimation animationType={animationTypeForTitle} animationDelay={1000}>
           <Typography variant="h3" >
               Check, what the weather is like
           </Typography>
@@ -70,9 +71,8 @@ const HomePage = () => {
         </Button>
 
         {loader}
-        <TriggerAnimation animationType={animationTypeForWeatherBlock}>
-          {weatherBlock}
-        </TriggerAnimation>
+        
+        {weatherBlock}
           
         </>
     )
