@@ -10,6 +10,10 @@ const useStyles = makeStyles({
         width: "100%",
         textAlign: "left",
         overflow: "auto"
+    },
+    accordionsWrapper: {
+        maxHeight: "570px",
+        overflowY: "auto"
     }
   });
 
@@ -56,7 +60,9 @@ const WeatherDetails = ({weatherDetails}) => {
             </Tabs>
         </AppBar>
         </div>
-        {singleDaysToRender}
+        <div className={classes.accordionsWrapper}>
+            {singleDaysToRender}
+        </div>
       </>
     )
 }
