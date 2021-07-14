@@ -85,7 +85,7 @@ const InnerAccordionWithWeather = ({data}) => {
                 <Typography variant="h6" component="h4">
                     {description}
                 </Typography>
-                <img src={`${ICON_BASE_URL_PREFIX}${icon}${ICON_BASE_URL_POSTFIX}`} />
+                <img src={`${ICON_BASE_URL_PREFIX}${icon}${ICON_BASE_URL_POSTFIX}`} alt="icon"/>
              </div>
         </div>
     )

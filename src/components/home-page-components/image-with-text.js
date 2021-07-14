@@ -29,9 +29,9 @@ const ImageWithText = ({imageSrc, text, reverseDirection}) => {
     const classes = useStyles();
 
     return (
-        <div className={`${classes.imageWithText} ${reverseDirection ? classes. reversed : ""}`}>
+        <div className={`${classes.imageWithText} ${reverseDirection ? classes.reversed : ""}`}>
             <div className={classes.child}>
-                <img src={imageSrc} className={classes.imageStyles}/>
+                <img src={imageSrc} className={classes.imageStyles} alt="icon-near-text"/>
             </div>
             <div className={classes.child}>
             <Typography variant="subtitle1" >

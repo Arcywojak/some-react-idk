@@ -62,8 +62,7 @@ const TriggerAnimation = ({children, animationType, animationDuration, animation
     return (
         <div 
         className={`${animationType ? classes[animationType] : ""} ${classes.animationWrapper}`}
-        style = {stylesFromProps}
-        >
+        style = {stylesFromProps}>
             {children}
         </div>
     )

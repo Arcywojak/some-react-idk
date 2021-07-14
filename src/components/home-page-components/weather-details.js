@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         overflow: "auto"
     },
     accordionsWrapper: {
-        maxHeight: "570px",
+        maxHeight: "610px",
         overflowY: "auto"
     }
   });

@@ -66,7 +66,7 @@ const HomePage = () => {
         </TriggerAnimation>
         <SearchInput inputValue={inputValue} setInputValue={setInputValue} placeholder="e.g. Warsaw" />
 
-        <Button disabled={inputValue.length === 0} variant="contained" color="primary" onClick={getWeather}>
+        <Button disabled={inputValue.length === 0  || isLoading} variant="contained" color="primary" onClick={getWeather}>
           Search
         </Button>
 
