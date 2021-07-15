@@ -8,6 +8,7 @@ import TriggerAnimation from '../../shared/components/trigger-animation';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { NO_ANIMATION, HIDING_ANIMATION, SHOW_ANIMATION } from '../../constants/animations';
+import NoWeatherFound from '../../components/home-page-components/no-weather-found';
 
 const useStyles = makeStyles({
   loaderWrapper: {
@@ -23,14 +24,19 @@ const HomePage = () => {
     const [inputValue, setInputValue] = useState('');
     const [weather, setWeather] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
     const [animationTypeForTitle, setAnimationTypeForTitle] = useState(NO_ANIMATION);
     const [animationTypeForWeatherBlock, setAnimationTypeForWeatherBlock] = useState(NO_ANIMATION);
     const weatherService = new WeatherService();
 
     const getWeather = () => {
       setIsLoading(true);
+        
       weatherService.getWeatherByCityName(inputValue).then(res => {
         if(!weather) {
+          if(isError) { 
+            setIsError(false);
+          }
 
           setWeather(res.data);
           setAnimationTypeForTitle(HIDING_ANIMATION);
@@ -44,10 +50,18 @@ const HomePage = () => {
           setTimeout(() => {
             setIsLoading(false);
             setWeather(res.data);
-          }, 1000)
+          }, 1000);
         }
         
-      })
+      }).catch(err => {
+        setWeather(null);
+
+        setTimeout(() => {
+          setIsLoading(false);
+          setIsError(true);
+          console.log(err)
+        }, 1000)
+      });
     }
 
     const weatherBlock = (weather != null && animationTypeForWeatherBlock === SHOW_ANIMATION) ? (
@@ -56,6 +70,8 @@ const HomePage = () => {
     </TriggerAnimation>) : null;
 
     const loader = isLoading ?  <div className={classes.loaderWrapper}><CircularProgress /></div> : null;
+
+    const errorBlock = isError ? <NoWeatherFound /> : null
 
     return (
         <>
@@ -73,6 +89,8 @@ const HomePage = () => {
         {loader}
         
         {weatherBlock}
+
+        {errorBlock}
           
         </>
     )

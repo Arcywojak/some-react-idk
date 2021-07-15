@@ -1,6 +1,15 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme();
 
+theme.typography.h4 = {
+    ...theme.typography.h4,
+    textAlign: "center",
+    "@media (max-width: 800px)": {
+        fontSize: "1.5rem",
+        padding: "0 12px"
+    }
+}
+
 theme.typography.h3 = {
     ...theme.typography.h3,
     textAlign: "center",
